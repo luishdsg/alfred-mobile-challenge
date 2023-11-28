@@ -1,4 +1,3 @@
-// Importações necessárias
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
@@ -7,14 +6,14 @@ import Favorites from './src/layout/favorites';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { components } from './src/styles';
 import { Ionicons } from '@expo/vector-icons';
-// Criação do navegador de abas na parte inferior
+
+
 const Tab = createBottomTabNavigator();
 
-// Componente principal que contém a navegação
 export default function App() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer>
+    <GestureHandlerRootView style={{...components.bgDarkBlue, flex: 1 }}>
+      <NavigationContainer >
         <Tab.Navigator
        
        screenOptions={({ route }) => ({
@@ -22,7 +21,6 @@ export default function App() {
         headerTintColor: '#E0FBFC',
         tabBarIcon: ({ focused, size }) => {
           let iconName;
-          let iconColor;
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
             return <Ionicons name={iconName as any} size={size} color='#E0FBFC'/>;

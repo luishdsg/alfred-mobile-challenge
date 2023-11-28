@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { View, FlatList, RefreshControl, ActivityIndicator, TextInput } from 'react-native';
+import { View, FlatList, RefreshControl, ActivityIndicator, TextInput, TouchableOpacity } from 'react-native';
 import { _getRandomUser } from '../services/getRandomUser';
 import { _getRandomUserInterface } from '../interface/getRandomUser-interface';
 import { components, fullView } from '../styles';
@@ -9,6 +9,7 @@ import favoriteManager from '../components/favoriteManager';
 import { Text } from 'react-native-ui-lib';
 import { Snackbar } from 'react-native-paper';
 import ModalDetail from '../components/modal';
+import { Feather } from '@expo/vector-icons';
 
 
 const Home: React.FC = () => {
@@ -22,7 +23,7 @@ const Home: React.FC = () => {
   const [favoriteMessage, setFavoriteMessage] = useState<string | null>(null);
   const [selectedUser, setSelectedUser] = useState<_getRandomUserInterface | null>(null);
   const [showModal, setShowModal] = useState(false);
-  const [alphabet, setAlphabet] = useState(true);
+  const [ageSortingAsc, setAgeSortingAsc] = useState(true);
 
   const _getRandomUserData = async () => {
     try {
@@ -58,6 +59,20 @@ const Home: React.FC = () => {
     }
   };
 
+  const sortData = (data: _getRandomUserInterface[], ascending: boolean) => {
+    return data.slice().sort((a, b) => {
+      const ageA = a.registered?.age || 0;
+      const ageB = b.registered?.age || 0;
+
+      return ascending ? ageA - ageB : ageB - ageA;
+    });
+  };
+
+  const toggleAgeSorting = () => {
+    setAgeSortingAsc(!ageSortingAsc);
+    const sortedData = sortData(userData, ageSortingAsc);
+    setUserData(sortedData);
+  };
 
   const handleFavoritePress = (user: _getRandomUserInterface) => {
     const isDuplicate = favoriteManager.getFavorites().some((fav) => fav.login.uuid === user.login.uuid);
@@ -84,7 +99,6 @@ const Home: React.FC = () => {
     }
   };
 
-
   useEffect(() => {
     if (searchTerm.length > 0) {
       return;
@@ -92,8 +106,8 @@ const Home: React.FC = () => {
     _getRandomUserData();
   }, [searchTerm]);
 
-
   const renderUsers = ({ item }: { item: _getRandomUserInterface }) => {
+
     return (
       <UserListItem
         user={item}
@@ -121,26 +135,33 @@ const Home: React.FC = () => {
     ) : null;
   };
 
-  
+
   return (
-    <View style={fullView}>
+    <View style={[fullView, components.bgDarkBlue]}>
       <View style={components.searchContainer}>
         <TextInput
           style={components.search}
           placeholder="Pesquise por nome..."
+          placeholderTextColor="#E0FBFC"
           value={searchTerm}
           onChangeText={(text) => {
             _filterSearch(text, userData);
             setLoadingMore(text === '' ? true : false);
           }}
         />
+
+        <TouchableOpacity onPress={toggleAgeSorting}>
+          <Text style={{ color: '#E0FBFC', marginLeft: 10 }}>
+            {ageSortingAsc ? <Feather name="arrow-up" size={24} color="#E0FBFC" /> : <Feather name="arrow-down" size={24} color="#E0FBFC" />}
+          </Text>
+        </TouchableOpacity>
       </View>
       {(filteredData.length === 0 && searchTerm !== '') ? (
         <View style={components.noResults}>
           <Text style={{ color: '#E0FBFC' }} text40L>¯\_(ツ)_/¯  {"\n"}Nenhum usuário com esse nome</Text>
         </View>
       ) : (
-        <FlatList style={[components.bgDarkBlue]}
+        <FlatList
           extraData={filteredData.length > 0 ? filteredData : null}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
@@ -150,7 +171,15 @@ const Home: React.FC = () => {
           onEndReached={onEndReached}
           onEndReachedThreshold={0.1}
           refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={['#98C1D9']} />
+            <RefreshControl
+              onRefresh={onRefresh}
+              refreshing={refreshing}
+              tintColor="#98C1D9"
+              colors={["#98C1D9"]}
+              progressBackgroundColor="#ffffff"
+              title="Atualizar..."
+              titleColor="#98C1D9"
+            />
           }
           ListFooterComponent={_loadingMoreContent}
         />

@@ -12,6 +12,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Button } from 'react-native-paper';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 interface UserDetailsModalProps {
@@ -58,21 +59,23 @@ const ModalDetail: React.FC<UserDetailsModalProps> = ({ user, isVisible, onClose
           <View style={modal.roomPic}>
             <Image source={{ uri: user.picture.large }} style={modal.profile} />
           </View>
-          <Text style={modal.infos}>Name: <Ionicons name="person-outline" size={14} color="#293241" /> {`${user.name.first} ${user.name.last}`}</Text>
-          <Text style={modal.infos}>Email: <Entypo name="email" size={14} color="#293241" /> {user.email}</Text>
-          <Text style={modal.infos}>Gender: <FontAwesome name="transgender-alt" size={14} color="#293241" /> {user.gender}</Text>
-          <Text style={modal.infos}>BirthDay: <MaterialCommunityIcons name="cake-variant-outline" size={14} color="#293241" /> {formatDate(user.registered.date)}</Text>
-          <Text>{'\n'}</Text>
-          <Text style={modal.infos}>Phone: <AntDesign name="phone" size={14} color="#293241" /> {user.phone}</Text>
-          <Text style={modal.infos}>Nat: <Feather name="flag" size={14} color="#293241" /> {user.nat}</Text>
-          <Text style={modal.infos}>ED: <Entypo name="location-pin" size={18} color="#293241" /> {user.location.street.name} {user.location.street.number} - {user.location.city} - {user.location.state} | {user.location.country}</Text>
-          <Text style={modal.infos}>Id: <AntDesign name="idcard" size={14} color="#293241" /> {user.id.value}</Text>
-          <TouchableOpacity >
-            <Button onPress={handleAddToFavorites} style={modal.addFavorite}>❤️ Favoritar</Button>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Button onPress={onClose} style={modal.close}><Text style={{ color: '#EE6C4D' }}>Fechar</Text></Button>
-          </TouchableOpacity>
+          <ScrollView style={modal.scroll}>
+            <Text style={modal.infos}>Name: <Ionicons name="person-outline" size={14} color="#293241" /> {`${user.name.first} ${user.name.last}`}</Text>
+            <Text style={modal.infos}>Email: <Entypo name="email" size={14} color="#293241" /> {user.email}</Text>
+            <Text style={modal.infos}>Gender: <FontAwesome name="transgender-alt" size={14} color="#293241" /> {user.gender}</Text>
+            <Text style={modal.infos}>BirthDay: <MaterialCommunityIcons name="cake-variant-outline" size={14} color="#293241" /> {formatDate(user.registered.date)}</Text>
+            <Text>{'\n'}</Text>
+            <Text style={modal.infos}>Phone: <AntDesign name="phone" size={14} color="#293241" /> {user.phone}</Text>
+            <Text style={modal.infos}>Nat: <Feather name="flag" size={14} color="#293241" /> {user.nat}</Text>
+            <Text style={modal.infos}>ED: <Entypo name="location-pin" size={18} color="#293241" /> {user.location.street.name} {user.location.street.number} - {user.location.city} - {user.location.state} | {user.location.country}</Text>
+            <Text style={modal.infos}>Id: <AntDesign name="idcard" size={14} color="#293241" /> {user.id.value}</Text>
+            <TouchableOpacity >
+              <Button onPress={handleAddToFavorites} style={modal.addFavorite}>❤️ Favoritar</Button>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Button onPress={onClose} style={modal.close}><Text style={{ color: '#EE6C4D' }}>Fechar</Text></Button>
+            </TouchableOpacity>
+          </ScrollView>
         </View>
       </BlurView>
     </Modal>

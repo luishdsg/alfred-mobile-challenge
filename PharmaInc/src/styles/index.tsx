@@ -17,7 +17,7 @@ export const components = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 20,
   },
-  notFavorite:{
+  notFavorite: {
     justifyContent: 'center',
     color: '#E0FBFC',
     top: '40%',
@@ -71,7 +71,7 @@ export const components = StyleSheet.create({
     width: 100,
   },
   snackbar: {
-    elevation: 999, 
+    elevation: 999,
   },
   bgBlue: {
     backgroundColor: '#3D5A80'
@@ -104,8 +104,8 @@ export const components = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#293241'
   },
-  TouchableOpacity:{
-    padding: 16, borderRadius: 15, margin: 10,flexDirection: 'row', backgroundColor: '#98C1D9',height: 85 
+  TouchableOpacity: {
+    padding: 16, borderRadius: 15, margin: 10, flexDirection: 'row', backgroundColor: '#98C1D9', height: 85
   }
 });
 export const modal = StyleSheet.create({
@@ -129,47 +129,54 @@ export const modal = StyleSheet.create({
   },
   modal: {
     backgroundColor: '#E0FBFC',
+    width: '100%',
+    height: '70%',
+    bottom: 0,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    position: 'absolute',
+
+  },
+  scroll: {
+    backgroundColor: '#E0FBFC',
     padding: 30,
     width: '100%',
-    height: '60%',
+    height: '100%',
     bottom: 0,
-    position: 'absolute',
-    borderRadius: 30,
   },
-  profile:{
+  profile: {
     width: 120, height: 120, borderRadius: 100,
+    top: -60,
     borderWidth: 3,
     borderColor: '#3D5A80',
   },
-  roomPic:{
+  roomPic: {
     width: '100%',
     height: 'auto',
     alignItems: 'center',
-    top: -90,
     backgroundColor: 'transparent'
   },
-  infos:{
+  infos: {
     fontSize: 20,
     lineHeight: 30,
-    top: -60
+    top: -10
   },
-  addFavorite:{
+  addFavorite: {
     width: '100%',
     height: 50,
     border: 0,
-    padding:0,
-    top: -50,
+    padding: 0,
+    top: -5,
     justifyContent: 'center',
     borderRadius: 100,
     backgroundColor: '#98C1D9'
   },
-  close:{
+  close: {
     borderRadius: 100,
     height: 50,
     borderWidth: 3,
     justifyContent: 'center',
     borderColor: '#EE6C4D',
-    top: -40,
     width: '100%',
     backgroundColor: 'transparent'
   }
