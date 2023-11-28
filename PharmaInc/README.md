@@ -1,53 +1,64 @@
-# Lista de Pacientes
+# Pharma Inc
 
-## Descrição
+## Finalidade
 
-Um app para vizualição de pacientes, pesquisa de pacientes e favoritação
+App de vizualição de clientes, com mecanismo de busca por nome, visualização de detalhes do cliente e favoritação
 
-## Capturas de Tela
+## ScreenShot & Video
 
-video: https://photos.app.goo.gl/T96bBsRy1D7fq6dE9
+demo: https://photos.app.goo.gl/Fi3VgfgRZG9r1kFfA
 
-<img src="assets/exemple1.jpeg" alt="drawing" width="250"/>
-<img src="assets/exemple2.jpeg" alt="drawing" width="250"/>
-<img src="assets/exemple3.jpeg" alt="drawing" width="250"/>
-<img src="assets/exemple4.jpeg" alt="drawing" width="250"/>
+<img src="assets/img/IMG_6652.PNG" alt="drawing" width="250"/>
+<img src="assets/img/IMG_6653.PNG" alt="drawing" width="250"/>
+<img src="assets/img/IMG_6654.PNG" alt="drawing" width="250"/>
+<img src="assets/img/IMG_6655.PNG" alt="drawing" width="250"/>
+<img src="assets/img/IMG_6656.PNG" alt="drawing" width="250"/>
 
-## Tecnologias Utilizadas
+## ferramentas Utilizadas
 
 - **React Native**
-- **Redux**
-- **NativeBase**
+- **Expo**
+- **Babel**
+- **TypeScript**
+- **Node**
+- **API**
+- **Yarn**
+- **etc...**
 
-## Instalação
+## Get Started
 
-Certifique-se de ter o Node.js e o npm instalados.
+Baixe o **Node** ou tenha o **Yarn**
+E NÃO SE ESQUEÇA DE INSTALAR O EXPO-CLI
 
-1. Clone este repositório:
+2. instale:
 
 ```bash
-  git clone https://github.com/FHenriqueZiimer/alfred-mobile-challenge
+  npm i --force
+```
+### ou
+
+```bash
+  yarn install
 ```
 
-2. instale as depencias:
+
+## Como usar
+Baixe um emulador ou tenha um SmartPhone android ou iOS:
 
 ```bash
-  npm i
-```
-
-## Executando o Aplicativo
-Execute o aplicativo no emulador ou em um dispositivo físico:
-
-```bash
-npx react-native run-android  # para Android
+npx react-native run-android  # para Android e ler o qr code
 
 ou
 
-npx react-native run-ios  # para iOS
+npx react-native run-ios  # para iOS e ler o qr code
 
 ou
 
-npm start # para expo
+expo start # para expo e ler o qr code
+
+ou
+
+yarn start # para expo e ler o qr code
 
 ```
 
