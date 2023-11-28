@@ -61,4 +61,11 @@ ou
 yarn start # para expo e ler o qr code
 
 ```
+## Caso não suporte typescript
 
+```bash
+yarn add -D @types/react @types/react-native
+
+```
+
+# Build with ❤️
